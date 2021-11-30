@@ -24,6 +24,8 @@ $(document).ready(function() {
     newAccount = new Account(name, balance);
     $(".accountBalance").html(newAccount.balance);
     console.log(newAccount);
+    $("#registerAccount").hide();
+    $("#accountManagement").show();
   });
   $("#fundsForm").submit(function (event) {
     event.preventDefault();
