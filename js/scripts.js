@@ -6,8 +6,8 @@ function Account(name, balance) {
 Account.prototype.withdraw = function(amount) {
   this.balance -= amount;
   if (this.balance < 0 ) {
-    this.balance -= amount;
-    return "Insufficent Funds!";
+    this.balance += amount;
+    alert("Insufficent Funds!");
   }
 }
 
