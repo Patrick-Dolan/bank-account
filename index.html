@@ -8,6 +8,30 @@
   <title>Bank Account</title>
 </head>
 <body>
-  <h1>Bank Account</h1>
+  <div class="container">
+    <h1>Bank Account</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Register a new account:</h2>
+        <form id="registerForm">
+          <label for="name">Name:</label>
+          <input id="name" type="text" class="form-control" required>
+          <label for="initialDeposit">Initial Deposit:</label>
+          <input id="initialDeposit" type="number" class="form-control" required>
+          <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h2>Deposit or withdraw funds:</h2>
+        <form id="fundsForm">
+          <label for="deposit">Deposit Amount:</label>
+          <input id="deposit" type="number" class="form-control">
+          <label for="withdraw">Withdraw Amount:</label>
+          <input id="withdraw" type="number" class="form-control">
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
