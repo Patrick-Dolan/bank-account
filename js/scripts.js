@@ -41,9 +41,26 @@ function deposit(accountId,amount) {
   account.balance += amount;
   console.log(account);
 }
+
+function transfer(source, target, amount) {
+  ledger.accounts[source].balance -= amount;
+  ledger.accounts[target].balance += amount;
+  console.log(ledger);
+}
 // Global Variable
 let ledger = new Ledger();
 // UI logic
+function addTransferAccount(ledger) {
+  let accountsSourceList = $("select#transferSource");
+  let accountsTargetList = $("select#transferTarget");
+  let htmlForAccountsList = "";
+  Object.keys(ledger.accounts).forEach(function(key) {
+    const account = ledger.findAccount(key);
+    htmlForAccountsList += "<option value=" + account.id + ">" + account.name + "</option>";
+  });
+  accountsSourceList.html(htmlForAccountsList);
+  accountsTargetList.html(htmlForAccountsList);
+}
 $(document).ready(function() {
   $("#registerForm").submit(function (event) {
     event.preventDefault();
@@ -52,7 +69,7 @@ $(document).ready(function() {
     let newAccount = new Account(name, balance);
     ledger.addAccount(newAccount);
     $(".accountBalance").html(newAccount.balance);
-    console.log(newAccount);
+    addTransferAccount(ledger);
     //$("#registerAccount").hide();
     $("#accountManagement").show();
   });
