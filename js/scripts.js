@@ -1,3 +1,27 @@
+// Ledger Business Logic
+function Ledger() {
+  this.accounts = {};
+  this.currentId = 0;
+}
+
+Ledger.prototype.addAccount = function(account) {
+  account.id = this.assignId();
+  this.accounts[account.id] = account;
+};
+
+Ledger.prototype.assignId = function() {
+  this.currentId += 1;
+  return this.currentId;
+};
+
+Ledger.prototype.findAccount = function(id) {
+  if (this.accounts[id] != undefined) {
+    return this.accounts[id];[]
+  }
+  return false;
+};
+
+// Account Business Logic
 function Account(name, balance) {
   this.name = name;
   this.balance = balance;
@@ -14,17 +38,19 @@ Account.prototype.withdraw = function(amount) {
 Account.prototype.deposit = function(amount) {
   this.balance += amount;
 }
-let newAccount = new Account("Name", 0);
-
+// Global Variable
+let ledger = new Ledger();
+// UI logic
 $(document).ready(function() {
   $("#registerForm").submit(function (event) {
     event.preventDefault();
     const name = $("input#name").val();
     const balance = parseInt($("input#initialDeposit").val());
-    newAccount = new Account(name, balance);
+    let newAccount = new Account(name, balance);
+    ledger.addAccount(newAccount);
     $(".accountBalance").html(newAccount.balance);
     console.log(newAccount);
-    $("#registerAccount").hide();
+    //$("#registerAccount").hide();
     $("#accountManagement").show();
   });
   $("#fundsForm").submit(function (event) {
