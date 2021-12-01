@@ -12,7 +12,7 @@
 
 ## Description
 
-_This allows you to create a bank account then increase or decrease the amount in the account._
+_This allows you to create a bank account then increase or decrease the amount in the account. It also allows you to create multiple accounts, see how much money is in them, and transfer money between accounts._
 
 ## Setup/Installation Requirements
 
@@ -22,7 +22,7 @@ _This allows you to create a bank account then increase or decrease the amount i
 
 ## Known Bugs
 
-* _No known issues_
+* _Withdrawl and Deposit section currently only works for the first created account_
 
 ## Contact Me
 
