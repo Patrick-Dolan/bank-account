@@ -42,6 +42,20 @@
         <h2>Account Balance:<span class="accountBalance"></span></h2>
       </div>
     </div>
+    <div class="row" id="transfers">
+      <form id="transferForm">
+        <h2>Transfers</h2>
+        <label for="transferSource">Please select account to transfer from:</label>
+          <select name="transferSource" id="transferSource">
+          </select>
+        <label for="transferTarget">Please select account to transfer to:</label>
+          <select name="transferTarget" id="transferTarget">
+          </select><br>
+        <label for="transferAmount">Transfer amount:</label>
+        <input id="transferAmount" type="number" class="form-control">
+        <button type="sumbit" class="btn btn-primary btn-block">Transfer</button>
+      </form>
+    </div>
   </div>
 </body>
 </html>
