@@ -45,7 +45,6 @@ function deposit(accountId,amount) {
 function transfer(source, target, amount) {
   ledger.accounts[source].balance -= amount;
   ledger.accounts[target].balance += amount;
-  console.log(ledger);
 }
 // Global Variable
 let ledger = new Ledger();
@@ -61,6 +60,17 @@ function addTransferAccount(ledger) {
   accountsSourceList.html(htmlForAccountsList);
   accountsTargetList.html(htmlForAccountsList);
 }
+
+function addAccountBalance(ledger) {
+  let accountBalanceList = $("ul#balances");
+  let htmlForAccountBalanceList = "";
+  Object.keys(ledger.accounts).forEach(function(key) {
+    const account = ledger.findAccount(key);
+    htmlForAccountBalanceList += "<li>" + account.name + ": $" + account.balance + "</li>";
+  });
+  accountBalanceList.html(htmlForAccountBalanceList);
+}
+
 $(document).ready(function() {
   $("#registerForm").submit(function (event) {
     event.preventDefault();
@@ -70,6 +80,7 @@ $(document).ready(function() {
     ledger.addAccount(newAccount);
     $(".accountBalance").html(newAccount.balance);
     addTransferAccount(ledger);
+    addAccountBalance(ledger);
     //$("#registerAccount").hide();
     $("#accountManagement").show();
   });
@@ -85,6 +96,15 @@ $(document).ready(function() {
       withdraw(accountId, amount);
       $(".accountBalance").html(ledger.accounts[1].balance);
     }
+  });
+  $("#transferForm").submit(function (event) {
+    event.preventDefault();
+    const source = $("select#transferSource").val();
+    const target = $("select#transferTarget").val();
+    const transferAmount = parseInt($("input#transferAmount").val());
+    transfer(source, target, transferAmount);
+    addAccountBalance(ledger);
+    console.log(ledger);
   });
 });
 
