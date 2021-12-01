@@ -60,13 +60,13 @@ $(document).ready(function() {
     event.preventDefault();
     let transaction = parseInt($("select#transaction").val());
     const amount = parseInt($("input#amount").val());
-    console.log(transaction);
+    let accountId = 1;
     if (transaction === 1) {
-      deposit(accountId,amount);
-      $(".accountBalance").html(newAccount.balance);
+      deposit(accountId, amount);
+      $(".accountBalance").html(ledger.accounts[1].balance);
     } else {
-      newAccount.withdraw(amount);
-      $(".accountBalance").html(newAccount.balance);
+      withdraw(accountId, amount);
+      $(".accountBalance").html(ledger.accounts[1].balance);
     }
   });
 });
