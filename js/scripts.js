@@ -27,16 +27,19 @@ function Account(name, balance) {
   this.balance = balance;
 }
 
-Account.prototype.withdraw = function(amount) {
-  this.balance -= amount;
-  if (this.balance < 0 ) {
-    this.balance += amount;
+function withdraw(accountId, amount) {
+  const account = ledger.findAccount(accountId);
+  account.balance -= amount;
+  if (account.balance < 0 ) {
+    account.balance += amount;
     alert("Insufficent Funds!");
   }
 }
 
-Account.prototype.deposit = function(amount) {
-  this.balance += amount;
+function deposit(accountId,amount) {
+  const account = ledger.findAccount(accountId);
+  account.balance += amount;
+  console.log(account);
 }
 // Global Variable
 let ledger = new Ledger();
@@ -59,7 +62,7 @@ $(document).ready(function() {
     const amount = parseInt($("input#amount").val());
     console.log(transaction);
     if (transaction === 1) {
-      newAccount.deposit(amount);
+      deposit(accountId,amount);
       $(".accountBalance").html(newAccount.balance);
     } else {
       newAccount.withdraw(amount);
